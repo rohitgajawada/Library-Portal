@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> global name 'datetime' is not defined"
+p3
+sS'layer'
+p4
+S'/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py'
+p5
+sS'code'
+p6
+S'def index():\n    thedate=datetime.date.today()\n    return dict(thedate=thedate)\n\ndef user():\n    return dict(form=auth())\n\n@cache.action()\ndef download():\n    return response.download(request, db)\n\ndef call():\n    return service()\n\n\n\nresponse._vars=response._caller(index)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/rohit/Documents/itwsproject/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py", line 17, in <module>\n  File "/home/rohit/Documents/itwsproject/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py", line 2, in index\n    thedate=datetime.date.today()\nNameError: global name \'datetime\' is not defined\n'
+p11
+s.

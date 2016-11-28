@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+
+{{i=0}}
+<table border="1">
+  {{for row in rows:}}
+  {{if i==items_per_page: break}}
+  {{book=db(db.book.id == row.bookid).select(db.book.title)}}
+  {{author=db(db.book.id == row.bookid).select(db.book.author)}}
+  {{book=str(book)}}
+  {{book=book[11:]}}
+  {{author=str(author)}}
+  {{author=author[11:]}}
+  <tr>
+    <td class>{{=book}}</td>
+    <td class>{{=author}}</td>
+    <td class>{{=row.date_borrow}}</td>
+    {{if row.ifret==True:}}
+    <td class>{{=row.date_return}}</td>
+    {{pass}}
+    {{if row.ifret==False:}}
+    <td class>Not Returned</td>
+    {{pass}}
+    {{if row.ifret==True:}}
+    <td class>Returned</td>
+    {{pass}}
+  </tr>
+  {{i=i+1}}
+  {{pass}}
+</table>
+<br><br>
+{{if page:}}
+<h3><a href="{{=URL(args=[page-1])}}">previous</a></h3>
+{{pass}}
+{{if len(rows)>items_per_page:}}
+<h3><a href="{{=URL(args=[page+1])}}">next</a></h3>
+{{pass}}
+<br>
+<br>

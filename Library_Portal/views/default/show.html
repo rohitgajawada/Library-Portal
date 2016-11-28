@@ -1,0 +1,32 @@
+{{extend 'layout.html'}}
+<h2>Title: {{=mybook.title}}</h2>
+<img width="300px" src="{{=URL('download', args=mybook.cover)}}"/>
+<h2>Author: {{=mybook.author}}</h2>
+<h2>Genre: {{=mybook.genre}}</h2>
+<h2>Edition: {{=mybook.edition}}</h2>
+<h2>Publisher: {{=mybook.publisher}}</h2>
+<h2>Rating: {{=mybook.rating}}</h2>
+<br>
+
+{{=form}}
+
+<form>
+  <input type="hidden" id="check" name="check" value="" />
+</form>
+<h3><span id="mybook{{=mybook.id}}"></span></h3>
+<br>
+<span onclick="jQuery('#check').val('{{=mybook.id}}');
+	       ajax('{{=URL("default","mycheck")}}', ['check'], 'mybook{{=mybook.id}}');"><button>Click to check availability</button></span>
+<br>
+
+
+<form>
+  <input type="hidden" id="love" name="love" value="" />
+</form>
+<h3><span id="lover"></span></h3>
+<br>
+<span onclick="jQuery('#love').val('{{=mybook.id}}');
+	       ajax('{{=URL("default","wishlist")}}', ['love'], 'lover');"><button>Add to wishlist</button></span>
+<br>
+<br>
+<br>

@@ -1,0 +1,62 @@
+{{extend 'layout.html'}}
+<style>
+  .cen {
+  text-align: center;
+  }
+</style>
+<div class="cen">
+  <h3>IIIT-H Library</h3>
+  <h4>The home of books and ideas</h4>
+</div>
+<div id="mainer">
+  <div id="tile1">
+    Today is {{=thedate}}!
+  </div><br>
+  <div id="tile2">
+    <h4>Recently added books</h4>
+    {{i=0}}
+    <table border="1">
+      {{for row in rows:}}
+      {{if i==items_per_page: break}}
+      <tr>
+	<td class>{{=(A(row.title, _href=URL("show", args=row.id)))}}</td>
+	<td class>{{=row.author}}</td>
+	<td class>{{=row.genre}}</td>
+      </tr>
+      {{i=i+1}}
+      {{pass}}
+    </table>
+  </div><br>
+  <div id="tile3">
+    <h4>Most popular books</h4>
+    {{i=0}}
+    <table border="1">
+      {{for pop in pops:}}
+      {{if i==items_per_page: break}}
+      <tr>
+	<td class>{{=(A(pop.title, _href=URL("show", args=pop.id)))}}</td>
+	<td class>{{=pop.author}}</td>
+	<td class>{{=pop.rating}}</td>
+      </tr>
+      {{i=i+1}}
+      {{pass}}
+    </table>
+  </div><br>
+  <div id="tile4">
+    <h4>My Wishlist</h4>
+    <table border="1">
+      {{for wish in wishes:}}
+      {{book=db(db.book.id == wish.bookid).select(db.book.title)}}
+      {{au=db(db.book.id == wish.bookid).select(db.book.author)}}
+      {{book=str(book)}}
+      {{book=book[11:]}}
+      {{au=str(au)}}
+      {{au=au[11:]}}
+      <tr>
+	<td class>{{=(A(book, _href=URL("show", args=wish.bookid)))}}</td>
+	<td class>{{=au}}</td>
+      </tr>
+      {{pass}}
+    </table>
+  </div><br>
+</div>

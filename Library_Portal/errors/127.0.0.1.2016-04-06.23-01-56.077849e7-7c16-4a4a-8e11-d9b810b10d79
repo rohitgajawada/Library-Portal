@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> 'DAL' object has no attribute 'page'"
+p3
+sS'layer'
+p4
+S'/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py'
+p5
+sS'code'
+p6
+S'def index():\n    import datetime\n    thedate=datetime.date.today()\n    \n    state=0\n    if auth.user!=None and auth.user.is_admin==True:\n        state=1\n    \n    return dict(thedate=thedate, state=state)\n\ndef user():\n    return dict(form=auth())\n\ndef libreg():\n    return dict(form=auth.register())\n\ndef libadmin():\n    if auth.user!=None and auth.user.is_admin==True:\n        grid = SQLFORM.grid(db.book)\n        return dict(grid=grid)\n    else:\n        return dict()\n\ndef borrow():\n    return dict(form=FORM(INPUT(_id=\'keyword\', _name=\'keyword\', _onkeyup="ajax(\'callback\', [\'keyword\'], \'target\');")), target_div=DIV(_id=\'target\'))\n\ndef callback():\n    query = db.page.title.contains(request.vars.keyword)\n    pages = db(query).select(orderby=db.page.title)\n    links = [A(p.title, _href=URL(\'show\',args=p.id)) for p in pages]\n    return UL(*links)\n\n@cache.action()\ndef download():\n    return response.download(request, db)\n\ndef call():\n    return service()\n\nresponse._vars=response._caller(callback)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/rohit/Documents/itwsproject/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py", line 40, in <module>\n  File "/home/rohit/Documents/itwsproject/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py", line 28, in callback\n    query = db.page.title.contains(request.vars.keyword)\n  File "/home/rohit/Documents/itwsproject/web2py/gluon/packages/dal/pydal/base.py", line 921, in __getattr__\n    return BasicStorage.__getattribute__(self, key)\nAttributeError: \'DAL\' object has no attribute \'page\'\n'
+p11
+s.

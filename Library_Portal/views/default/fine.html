@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+
+{{i=0}}
+<table border="1">
+  {{for mem in members:}}
+  <tr>
+    <td>{{=mem.first_name}}</td>
+    <td>{{=mem.email}}</td>
+    <td>Fine :</td>
+  </tr>
+  {{i=i+1}}
+  {{pass}}
+</table>

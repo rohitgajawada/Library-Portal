@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> 'DAL' object has no attribute 'page'"
+p3
+sS'layer'
+p4
+S'/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py'
+p5
+sS'code'
+p6
+S'def index():\n    import datetime\n    thedate=datetime.date.today()\n    \n    state=0\n    if auth.user!=None and auth.user.is_admin==True:\n        state=1\n    \n    return dict(thedate=thedate, state=state)\n\ndef user():\n    return dict(form=auth())\n\ndef libreg():\n    return dict(form=auth.register())\n\ndef libadmin():\n    if auth.user!=None and auth.user.is_admin==True:\n        grid = SQLFORM.grid(db.book)\n        return dict(grid=grid)\n    else:\n        return dict()\n\ndef borrow():\n    form1=FORM(INPUT(_id=\'keyword1\', _name=\'keyword1\', _onkeyup="ajax(\'callback1\', [\'keyword1\'], \'target1\');")) \n    target_div1=DIV(_id=\'target1\')\n\n    form2=FORM(INPUT(_id=\'keyword2\', _name=\'keyword2\', _onkeyup="ajax(\'callback2\', [\'keyword2\'], \'target2\');")) \n    target_div2=DIV(_id=\'target2\')\n\n    form3=FORM(INPUT(_id=\'keyword3\', _name=\'keyword3\', _onkeyup="ajax(\'callback3\', [\'keyword3\'], \'target3\');")) \n    target_div3=DIV(_id=\'target3\')\n\n    return locals()\n\ndef show():\n    mybook = db.page(request.args(0,cast=int)) or redirect(URL(\'index\'))\n    return dict(mybook=mybook)\n\ndef callback1():\n    query = db.book.title.contains(request.vars.keyword1)\n    books = db(query).select(orderby=db.book.title)\n    links = [A(b.title, _href=URL(\'show\',args=b.id)) for b in books]\n    return UL(*links)\n\ndef callback2():\n    query = db.book.author.contains(request.vars.keyword2)\n    books = db(query).select(orderby=db.book.author)\n    links = [A(b.author, _href=URL(\'show\',args=b.id)) for b in books]\n    return UL(*links)\n\ndef callback3():\n    query = db.book.genre.contains(request.vars.keyword3)\n    books = db(query).select(orderby=db.book.genre)\n    links = [A(b.genre, _href=URL(\'show\',args=b.id)) for b in books]\n    return UL(*links)\n\n@cache.action()\ndef download():\n    return response.download(request, db)\n\ndef call():\n    return service()\n\nresponse._vars=response._caller(show)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/rohit/Documents/itwsproject/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py", line 65, in <module>\n  File "/home/rohit/Documents/itwsproject/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/rohit/Documents/itwsproject/web2py/applications/Library_Portal/controllers/default.py", line 37, in show\n    mybook = db.page(request.args(0,cast=int)) or redirect(URL(\'index\'))\n  File "/home/rohit/Documents/itwsproject/web2py/gluon/packages/dal/pydal/base.py", line 921, in __getattr__\n    return BasicStorage.__getattribute__(self, key)\nAttributeError: \'DAL\' object has no attribute \'page\'\n'
+p11
+s.

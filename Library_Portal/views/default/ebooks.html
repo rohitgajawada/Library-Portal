@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+
+{{i=0}}
+<table border="1">
+  {{for row in rows:}}
+  {{if i==items_per_page: break}}
+  <tr>
+    <td class>{{=(A(row.title, _href=URL("show", args=row.id)))}}</td>
+    <td class>{{=row.author}}</td>
+  </tr>
+  {{i=i+1}}
+  {{pass}}
+</table>
+<br><br>
+{{if page:}}
+<h3><a href="{{=URL(args=[page-1])}}">previous</a></h3>
+{{pass}}
+{{if len(rows)>items_per_page:}}
+<h3><a href="{{=URL(args=[page+1])}}">next</a></h3>
+{{pass}}
+<br>
+<br>

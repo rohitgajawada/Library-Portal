@@ -1,0 +1,23 @@
+{{extend 'layout.html'}}
+
+{{i=0}}
+<table border="1">
+  {{for mem in mems:}}
+  <tr>
+    <td>{{=mem.first_name}}</td>
+    <td>{{=mem.email}}</td>
+    <td>{{=(A("Remove user", _href=URL("show", args=row.id)))}}</td>
+
+    <form>
+      <input type="hidden" id="check" name="check" value="" />
+    </form>
+    <h3><span id="mybook{{=mybook.id}}"></span></h3>
+    <br>
+    <span onclick="jQuery('#check').val('{{=mybook.id}}');
+		   ajax('{{=URL("default","myborr")}}', ['check'], 'mybook{{=mybook.id}}');"><button>Click to borrow</button></span>
+    <br>
+
+  </tr>
+  {{i=i+1}}
+  {{pass}}
+</table>
